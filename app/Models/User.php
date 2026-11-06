@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
@@ -34,9 +35,15 @@ class User extends Authenticatable
         ];
     }
 
-    public static function newFactory(): Factory
+    public function profile(): HasOne
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+   /* public static function newFactory(): Factory
     {
 
         return AdminFactory::new();
     }
+   */
 }
